@@ -10,7 +10,7 @@ inputs:
   topic:
     description: ntfy.sh topic
     required: true
-  jobStatus:
+  job_status:
     description: status of the job ( ${{ job.status }} )
     required: true
   default:
