@@ -16,7 +16,6 @@ jobs:
           topic: ${{ secrets.NTFY_TOPIC }}
           icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
           default: '{"title": "The default title", "message": "The default message"}'
-          on_failure: '{"title": "A failure title", "message": "The failure message"}'
           job_status: ${{ job.status }}
 
       - name: ntfy-action test step
@@ -25,6 +24,6 @@ jobs:
           url: ${{ secrets.NTFY_URL }}
           topic: ${{ secrets.NTFY_TOPIC }}
           icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
-          default: '{"title": "The default title", "message": "The default message"}'
-          on_failure: '{"title": "A failure title", "message": "The failure message"}'
+          default: '{"title": "The default title", "message": "The default message", "tags": ["white_check_mark"]}'
+          on_failure: ${{ format('{{"title":"{0}","message":"Workflow run {1} has failed","priority":4,"tags":["x"]}}', github.repository, github.workflow) }}
           job_status: 'failure'

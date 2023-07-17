@@ -15,7 +15,7 @@ const isTrue = (variable) => {
 
 async function run() {
     try {
-        const context = github.context;
+        const context = github.context.repo;
         // Possible values are success, failure, or cancelled.
         const jobStatus = core.getInput('job_status');
 
