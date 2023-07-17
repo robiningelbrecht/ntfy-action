@@ -16383,7 +16383,7 @@ async function run() {
                 'icon': icon,
                 'priority': ntfy.priority || 3,
                 'tags': ntfy.tags || [],
-                'title': context,
+                'title': ntfy.title,
                 'message': ntfy.message,
                 'actions': ntfy.actions || [],
                 'click': ntfy.click || null
