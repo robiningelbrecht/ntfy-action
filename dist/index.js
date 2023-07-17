@@ -16347,7 +16347,7 @@ const isTrue = (variable) => {
 async function run() {
     try {
         const context = github.context;
-        core.debug(JSON.stringify(context));
+        console.log(JSON.stringify(context));
         // Possible values are success, failure, or cancelled.
         const jobStatus = core.getInput('job_status');
 
