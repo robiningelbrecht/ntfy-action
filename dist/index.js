@@ -16348,7 +16348,7 @@ async function run() {
     try {
         const context = github.context;
         // Possible values are success, failure, or cancelled.
-        const jobStatus = github.job.status;
+        const jobStatus = core.getInput('job_status');
 
         const options = {};
         options.env = Object.assign(process.env, {
@@ -16398,29 +16398,6 @@ async function run() {
 }
 
 run();
-
-/**
- *
- *   curl ntfy.sh \
- *   -d '{
- *     "topic": "3d8c3c88-4932-4eb7-b8e9-b5338fa37e8c",
- *     "priority": 2,
- *  	"tags": ["warning","cd"],
- *     "title": "Unauthorized access detected",
- *     "message": "This is a cool message",
- *     "click": "https://home.nest.com/",
- *     "attach": "https://cdn.britannica.com/16/234216-050-C66F8665/beagle-hound-dog.jpg",
- *     "icon": "https://styles.redditmedia.com/t5_32uhe/styles/communityIcon_xnt6chtnr2j21.png",
- *     "actions": [
- *       {
- *         "action": "view",
- *         "label": "Open Twitter",
- *         "url": "https://twitter.com/binwiederhier/status/1467633927951163392",
- *         "clear": true
- *       }
- *     ]
- *   }'
- */
 })();
 
 module.exports = __webpack_exports__;
