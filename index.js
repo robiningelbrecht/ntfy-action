@@ -14,7 +14,7 @@ const isTrue = (variable) => {
 }
 
 async function run() {
-    try {
+    //try {
         const context = github.context;
         // Possible values are success, failure, or cancelled.
         const jobStatus = core.getInput('job_status');
@@ -61,9 +61,9 @@ async function run() {
         core.setOutput('response', {
             'statusCode': response.statusCode
         });
-    } catch (error) {
-        core.setFailed(error.message);
-    }
+   // } catch (error) {
+   //     core.setFailed(error.message);
+   // }
 }
 
 run();
