@@ -12,3 +12,4 @@ jobs:
           topic: ${{ secrets.NTFY_TOPIC }}
           icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
           default: '{"title": "A title", "message": "The message"}'
+          jobStatus: 'success'
