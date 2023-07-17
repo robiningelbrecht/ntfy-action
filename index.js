@@ -4,31 +4,14 @@ const axios = require('axios');
 
 const isTrue = (variable) => {
     const lowercase = variable.toLowerCase();
-    return (
-        lowercase === '1' ||
-        lowercase === 't' ||
-        lowercase === 'true' ||
-        lowercase === 'y' ||
-        lowercase === 'yes'
-    );
+    return (lowercase === '1' || lowercase === 't' || lowercase === 'true' || lowercase === 'y' || lowercase === 'yes');
 }
 
 async function run() {
     try {
         const context = github.context;
-        console.log(JSON.stringify(context));
         // Possible values are success, failure, or cancelled.
         const jobStatus = core.getInput('job_status');
-
-        const options = {};
-        options.env = Object.assign(process.env, {
-            GITHUB_ACTION: process.env.GITHUB_ACTION,
-            GITHUB_RUN_ID: process.env.GITHUB_RUN_ID,
-            GITHUB_REF: process.env.GITHUB_REF,
-            GITHUB_REPOSITORY: process.env.GITHUB_REPOSITORY,
-            GITHUB_SHA: process.env.GITHUB_SHA,
-            GITHUB_HEAD_REF: process.env.GITHUB_HEAD_REF || '',
-        });
 
         const url = core.getInput('url');
         const topic = core.getInput('topic');
@@ -36,24 +19,36 @@ async function run() {
 
         const defaults = JSON.parse(core.getInput('default'));
         let ntfy = Object.assign(defaults, JSON.parse(core.getInput('on_success') || '{}'));
+        ntfy.message = `Successfully ran workflow "${context.workflow}"`;
+
         if (jobStatus !== 'success') {
             ntfy = Object.assign(defaults, JSON.parse(core.getInput('on_failure') || '{}'));
+            ntfy.message = `"Workflow run "${context.workflow}" has failed`;
         }
 
-        // d $'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}' \
-
         const response = await axios({
-            method: 'POST',
-            url: url,
-            data: JSON.stringify({
+            method: 'POST', url: url, data: JSON.stringify({
                 'topic': topic,
                 'icon': icon,
                 'priority': ntfy.priority || 3,
                 'tags': ntfy.tags || [],
-                'title': ntfy.title,
+                'title': context.payload.repository.full_name,
                 'message': ntfy.message,
-                'actions': ntfy.actions || [],
-                'click': ntfy.click || null
+                'actions': [
+                    {
+                        "action": "view",
+                        "label": "Visit Repo",
+                        "url": context.payload.repository.html_url,
+                        "clear": true
+                    },
+                    {
+                        "action": "view",
+                        "label": "View Run",
+                        "url": `${context.payload.repository.html_url}/actions/runs/${context.runId}`,
+                        "clear": true
+                    }
+                ],
+                'click': context.payload.repository.html_url
             })
         })
 

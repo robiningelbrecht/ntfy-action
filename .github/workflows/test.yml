@@ -9,21 +9,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: ntfy-action test step
+      - name: ntfy-action test success
         uses: ./
         with:
           url: ${{ secrets.NTFY_URL }}
           topic: ${{ secrets.NTFY_TOPIC }}
           icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
-          default: '{"title": "The default title", "message": "The default message"}'
-          job_status: ${{ job.status }}
+          default: '{"tags":["white_check_mark"]}'
+          on_failure: '{"priority":4,"tags":["x"]}'
+          job_status: 'success'
+          #job_status: ${{ job.status }}
 
-      - name: ntfy-action test step
+      - name: ntfy-action test failure
         uses: ./
         with:
           url: ${{ secrets.NTFY_URL }}
           topic: ${{ secrets.NTFY_TOPIC }}
           icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
-          default: ${{ format('{{"title":"{0}","message":"Successfully ran workflow {1},"priority":4,"tags":["white_check_mark"]}}', github.repository, github.workflow) }}
-          on_failure: ${{ format('{{"title":"{0}","message":"Workflow run {1} has failed","priority":4,"tags":["x"]}}', github.repository, github.workflow) }}
+          default: '{"tags":["white_check_mark"]}'
+          on_failure: '{"priority":4,"tags":["x"]}'
           job_status: 'failure'
