@@ -16348,13 +16348,11 @@ async function run() {
         const topic = core.getInput('topic');
         const icon = core.getInput('icon') || null;
 
-        const defaults = JSON.parse(core.getInput('default'));
-        let ntfy = Object.assign(defaults, JSON.parse(core.getInput('on_success') || '{}'));
+        const ntfy = {};
         ntfy.message = `Successfully ran workflow "${context.workflow}"`;
         ntfy.tags = ['white_check_mark'];
 
         if (jobStatus !== 'success') {
-            ntfy = Object.assign(defaults, JSON.parse(core.getInput('on_failure') || '{}'));
             ntfy.message = `Workflow run "${context.workflow}" has failed`;
             ntfy.priority = 4;
             ntfy.tags = ['x'];
