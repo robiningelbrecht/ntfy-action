@@ -16,15 +16,6 @@ inputs:
   job_status:
     description: status of the job
     required: true
-  default:
-    description: default ntfy.sh properties
-    required: true
-  on_success:
-    description: ntfy.sh properties on success
-    required: false
-  on_failure:
-    description: ntfy.sh properties on failure
-    required: false
 outputs:
   response:
     description: 'The response of POST request'

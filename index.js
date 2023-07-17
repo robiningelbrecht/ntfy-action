@@ -20,10 +20,13 @@ async function run() {
         const defaults = JSON.parse(core.getInput('default'));
         let ntfy = Object.assign(defaults, JSON.parse(core.getInput('on_success') || '{}'));
         ntfy.message = `Successfully ran workflow "${context.workflow}"`;
+        ntfy.tags = ['white_check_mark'];
 
         if (jobStatus !== 'success') {
             ntfy = Object.assign(defaults, JSON.parse(core.getInput('on_failure') || '{}'));
-            ntfy.message = `"Workflow run "${context.workflow}" has failed`;
+            ntfy.message = `Workflow run "${context.workflow}" has failed`;
+            ntfy.priority = 4;
+            ntfy.tags = ['x'];
         }
 
         const response = await axios({

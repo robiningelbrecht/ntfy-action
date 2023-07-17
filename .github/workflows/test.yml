@@ -15,8 +15,6 @@ jobs:
           url: ${{ secrets.NTFY_URL }}
           topic: ${{ secrets.NTFY_TOPIC }}
           icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
-          default: '{"tags":["white_check_mark"]}'
-          on_failure: '{"priority":4,"tags":["x"]}'
           job_status: 'success'
           #job_status: ${{ job.status }}
 
@@ -26,6 +24,4 @@ jobs:
           url: ${{ secrets.NTFY_URL }}
           topic: ${{ secrets.NTFY_TOPIC }}
           icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
-          default: '{"tags":["white_check_mark"]}'
-          on_failure: '{"priority":4,"tags":["x"]}'
           job_status: 'failure'
