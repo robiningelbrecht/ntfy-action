@@ -1,4 +1,4 @@
-name: ntfy_action
+name: ntfy.sh action
 description: Send notifications to ntfy.sh using GitHub Action workflow
 branding:
   icon: 'upload'

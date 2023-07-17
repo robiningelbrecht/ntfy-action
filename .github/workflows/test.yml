@@ -1,0 +1,14 @@
+on: [workflow_dispatch]
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    name: Test job
+    steps:
+      - name: ntfy-action test step
+        uses: ./
+        with:
+          url: ${{ secrets.NTFY_URL }}
+          topic: ${{ secrets.NTFY_TOPIC }}
+          icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
+          default: '{"title": "A title", "message": "The message"}'
