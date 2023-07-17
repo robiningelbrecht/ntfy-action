@@ -10,6 +10,9 @@ inputs:
   topic:
     description: ntfy.sh topic
     required: true
+  icon:
+    description: icon to be used in the notification
+    required: true
   job_status:
     description: status of the job
     required: true
