@@ -16346,7 +16346,10 @@ const isTrue = (variable) => {
 
 async function run() {
     try {
-        const context = github.context.repo;
+        const context = github.context;
+        core.setOutput('response', {
+            'debug': JSON.stringify(context)
+        });
         // Possible values are success, failure, or cancelled.
         const jobStatus = core.getInput('job_status');
 
@@ -16380,7 +16383,7 @@ async function run() {
                 'icon': icon,
                 'priority': ntfy.priority || 3,
                 'tags': ntfy.tags || [],
-                'title': ntfy.title,
+                'title': context,
                 'message': ntfy.message,
                 'actions': ntfy.actions || [],
                 'click': ntfy.click || null

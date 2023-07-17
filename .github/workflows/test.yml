@@ -24,6 +24,6 @@ jobs:
           url: ${{ secrets.NTFY_URL }}
           topic: ${{ secrets.NTFY_TOPIC }}
           icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
-          default: '{"title": "The default title", "message": "The default message", "tags": ["white_check_mark"]}'
+          default: ${{ format('{{"title":"{0}","message":"Successfully ran workflow {1},"priority":4,"tags":["white_check_mark"]}}', github.repository, github.workflow) }}
           on_failure: ${{ format('{{"title":"{0}","message":"Workflow run {1} has failed","priority":4,"tags":["x"]}}', github.repository, github.workflow) }}
           job_status: 'failure'
