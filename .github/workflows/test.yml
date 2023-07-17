@@ -15,5 +15,16 @@ jobs:
           url: ${{ secrets.NTFY_URL }}
           topic: ${{ secrets.NTFY_TOPIC }}
           icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
-          default: '{"title": "A title", "message": "The message"}'
+          default: '{"title": "The default title", "message": "The default message"}'
+          on_failure: '{"title": "A failure title", "message": "The failure message"}'
           job_status: ${{ job.status }}
+
+      - name: ntfy-action test step
+        uses: ./
+        with:
+          url: ${{ secrets.NTFY_URL }}
+          topic: ${{ secrets.NTFY_TOPIC }}
+          icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
+          default: '{"title": "The default title", "message": "The default message"}'
+          on_failure: '{"title": "A failure title", "message": "The failure message"}'
+          job_status: 'failure'

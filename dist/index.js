@@ -16372,8 +16372,6 @@ async function run() {
 
         // d $'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}' \
 
-        core.info(`Connecting to endpoint (${url}) ...`)
-
         const response = await axios({
             method: 'POST',
             url: url,
