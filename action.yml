@@ -1,0 +1,30 @@
+name: ntfy_action
+description: Send notifications to ntfy.sh using GitHub Action workflow
+branding:
+  icon: 'upload'
+  color: 'blue'
+inputs:
+  url:
+    description: Server URL
+    required: true
+  topic:
+    description: ntfy.sh topic
+    required: true
+  jobStatus:
+    description: status of the job ( ${{ job.status }} )
+    required: true
+  default:
+    description: default ntfy.sh properties
+    required: true
+  on_success:
+    description: ntfy.sh properties on success
+    required: false
+  on_failure:
+    description: ntfy.sh properties on failure
+    required: false
+outputs:
+  response:
+    description: 'The response of POST request'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
