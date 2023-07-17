@@ -17,7 +17,7 @@ async function run() {
     try {
         const context = github.context;
         // Possible values are success, failure, or cancelled.
-        const jobStatus = github.job.status;
+        const jobStatus =core.getInput('job_status');
 
         const options = {};
         options.env = Object.assign(process.env, {
