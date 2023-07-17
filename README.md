@@ -4,20 +4,29 @@ Send notifications to ntfy.sh using GitHub Action workflow
 
 ## Inputs
 
-### `who-to-greet`
+### `url`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** The ntfy server URL
 
-## Outputs
+### `topic`
 
-### `time`
+**Required** The ntfy topic
 
-The time we greeted you.
+### `icon`
+
+**Required** URL to an icon to display in the notification
+
+### `job_status`
+
+**Required** The job status. Should always be `${{ job.status }}`, except if you want to force a status.
 
 ## Example usage
 
 ```yaml
-uses: actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b
+uses: robiningelbrecht/ntfy-action
 with:
-  who-to-greet: 'Mona the Octocat'
+    url: ${{ secrets.NTFY_URL }}
+    topic: ${{ secrets.NTFY_TOPIC }}
+    icon: 'https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png'
+    job_status: ${{ job.status }}
 ```
