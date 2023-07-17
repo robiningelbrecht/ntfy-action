@@ -6,6 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Test job
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: ntfy-action test step
         uses: ./
         with:
