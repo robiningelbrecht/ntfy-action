@@ -24,6 +24,7 @@ Send notifications to ntfy.sh using GitHub Action workflow
 
 ```yaml
 uses: robiningelbrecht/ntfy-action
+if: always()
 with:
     url: ${{ secrets.NTFY_URL }}
     topic: ${{ secrets.NTFY_TOPIC }}
