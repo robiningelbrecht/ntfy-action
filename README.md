@@ -23,7 +23,7 @@ Send notifications to ntfy.sh using GitHub Action workflow
 ## Example usage
 
 ```yaml
-uses: robiningelbrecht/ntfy-action
+uses: robiningelbrecht/ntfy-action@v1.0.0
 if: always()
 with:
     url: ${{ secrets.NTFY_URL }}
