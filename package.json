@@ -1,6 +1,6 @@
 {
   "name": "ntfy-action",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Send notifications to ntfy.sh using GitHub Action workflow",
   "main": "index.js",
   "repository": {
